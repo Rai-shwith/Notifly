@@ -1,4 +1,4 @@
-package com.notifly
+package com.ashwith.notifly
 
 import android.app.Application
 import com.facebook.react.PackageList

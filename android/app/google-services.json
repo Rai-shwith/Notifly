@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "458870483711",
+    "project_id": "notifly-c0ca5",
+    "storage_bucket": "notifly-c0ca5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:458870483711:android:2cee2748171675a0017aca",
+        "android_client_info": {
+          "package_name": "com.ashwith.notifly"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIQHeppTj_DCtYpAKOoEf2URr4PUhLsDk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

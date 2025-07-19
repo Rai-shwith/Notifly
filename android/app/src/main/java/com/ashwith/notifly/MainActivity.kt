@@ -1,4 +1,4 @@
-package com.notifly
+package com.ashwith.notifly
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
