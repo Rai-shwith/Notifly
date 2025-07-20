@@ -2,14 +2,43 @@ import React from 'react';
 import { View, Text, StyleSheet, ImageBackground } from 'react-native';
 
 export default function MountainScreen({ route }) {
-  const message = route.params?.message || '';
+  const title = route.params?.title || 'Mountain Theme';
+  const message = route.params?.message || 'Welcome to the Mountain theme!';
+
   return (
-    <ImageBackground source={require('../assets/mountain.png')} style={styles.container}>
-      <Text style={styles.text}>{message}</Text>
+    <ImageBackground
+      source={require('../assets/mountain.png')}
+      style={styles.container}
+    >
+      <View style={styles.textContainer}>
+        <Text style={styles.titleText}>{title}</Text>
+        <Text style={styles.messageText}>{message}</Text>
+      </View>
     </ImageBackground>
   );
 }
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', alignItems: 'center' },
-  text: { fontSize: 18, color: '#fff' },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  textContainer: {
+    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+    padding: 20,
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  titleText: {
+    fontSize: 24,
+    color: '#fff',
+    fontWeight: 'bold',
+    marginBottom: 10,
+    textAlign: 'center',
+  },
+  messageText: {
+    fontSize: 18,
+    color: '#fff',
+    textAlign: 'center',
+  },
 });

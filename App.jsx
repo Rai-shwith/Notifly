@@ -59,9 +59,66 @@ const registerFCMToken = async () => {
 export default function App() {
   const navigationRef = useRef();
 
+  // Function to handle notification navigation
+  const handleNotificationNavigation = remoteMessage => {
+    if (remoteMessage?.data) {
+      const { theme, title, message } = remoteMessage.data;
+
+      // Map theme to screen name (capitalize first letter)
+      const screenName = theme.charAt(0).toUpperCase() + theme.slice(1);
+
+      // Navigate to the appropriate screen with title and message
+      if (
+        navigationRef.current &&
+        ['Beach', 'Mountain', 'River'].includes(screenName)
+      ) {
+        navigationRef.current.navigate(screenName, {
+          title: title,
+          message: message,
+        });
+      }
+    }
+  };
+
   useEffect(() => {
     // Register FCM token when app launches
     registerFCMToken();
+
+    // Handle notification when app is opened from background/killed state
+    messaging()
+      .getInitialNotification()
+      .then(remoteMessage => {
+        if (remoteMessage) {
+          console.log(
+            'Notification caused app to open from quit state:',
+            remoteMessage,
+          );
+          handleNotificationNavigation(remoteMessage);
+        }
+      });
+
+    // Handle notification when app is in foreground
+    const unsubscribeForeground = messaging().onMessage(async remoteMessage => {
+      console.log('Notification received in foreground:', remoteMessage);
+      handleNotificationNavigation(remoteMessage);
+    });
+
+    // Handle notification when app is in background but not killed
+    const unsubscribeBackground = messaging().onNotificationOpenedApp(
+      remoteMessage => {
+        console.log(
+          'Notification caused app to open from background state:',
+          remoteMessage,
+        );
+        handleNotificationNavigation(remoteMessage);
+      },
+    );
+
+    // Cleanup subscriptions
+    return () => {
+      unsubscribeForeground();
+      unsubscribeBackground();
+    };
   }, []);
 
   return (

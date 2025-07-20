@@ -32,6 +32,14 @@ def send_notification(request: SendNotificationRequest):
     if not latest_token:
         raise HTTPException(status_code=400, detail="No token registered yet")
 
+    # Validate theme
+    valid_themes = ["mountain", "river", "beach"]
+    if request.theme.lower() not in valid_themes:
+        raise HTTPException(
+            status_code=400, 
+            detail=f"Invalid theme '{request.theme}'. Choose from: {', '.join(valid_themes)}"
+        )
+
     # Construct the message with notification and data payload
     message = messaging.Message(
         token=latest_token,
@@ -40,7 +48,9 @@ def send_notification(request: SendNotificationRequest):
             body=request.message,
         ),
         data={
-            "theme": request.theme
+            "theme": request.theme.lower(),
+            "title": request.title,
+            "message": request.message
         }
     )
 
