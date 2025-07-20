@@ -182,54 +182,6 @@ cd android
 ./gradlew assembleRelease
 ```
 
-**Note for Production**: Before building for production, consider removing or reducing console.log statements in the JavaScript code for better performance and security.
-
-## Production Optimization
-
-To optimize for production:
-
-1. **Remove Debug Logs**: Remove or comment out console.log statements
-2. **Enable Proguard**: Ensure proguard is enabled in `android/app/build.gradle`
-3. **Optimize Images**: Compress assets in the `assets/` folder
-4. **Environment Variables**: Use environment-specific configuration for backend URLs
-
-## Troubleshooting
-
-### Common Issues
-
-1. **FCM Token Registration Fails**
-
-   - Ensure `google-services.json` is in the correct location
-   - Check network connectivity
-   - Verify Firebase project configuration
-
-2. **Notifications Not Received**
-
-   - Confirm app has notification permissions
-   - Verify backend is running and accessible
-   - Check FCM token is registered correctly
-
-3. **Build Failures**
-   - Clean and rebuild: `cd android && ./gradlew clean`
-   - Ensure all dependencies are installed
-   - Check Android SDK and build tools versions
-
-### Debug Commands
-
-```bash
-# Check app logs
-adb logcat | grep "com.ashwith.notifly"
-
-# Verify FCM token
-# Check app console for token output
-
-# Test backend connectivity
-curl http://YOUR_LAPTOP_IP:8000/ping
-
-# Example:
-# curl http://192.168.1.100:8000/ping
-```
-
 ## Dependencies
 
 ### React Native
