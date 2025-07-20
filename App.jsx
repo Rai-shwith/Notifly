@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Button, Alert } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import messaging from '@react-native-firebase/messaging';
-import NoThemeScreen from './screens/NoThemeScreen';
+import HomeScreen from './screens/HomeScreen';
 import BeachScreen from './screens/BeachScreen';
 import MountainScreen from './screens/MountainScreen';
 import RiverScreen from './screens/RiverScreen';
@@ -123,8 +123,8 @@ export default function App() {
 
   return (
     <NavigationContainer ref={navigationRef}>
-      <Stack.Navigator initialRouteName="NoTheme">
-        <Stack.Screen name="NoTheme" component={NoThemeScreen} />
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Beach" component={BeachScreen} />
         <Stack.Screen name="Mountain" component={MountainScreen} />
         <Stack.Screen name="River" component={RiverScreen} />

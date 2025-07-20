@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 
-export default function NoThemeScreen({ route, navigation }) {
+export default function HomeScreen({ route, navigation }) {
   const message = route?.params?.message || 'Choose a theme to continue';
 
   return (
