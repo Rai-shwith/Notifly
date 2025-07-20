@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, ImageBackground } from 'react-native';
 export default function BeachScreen({ route }) {
   const message = route.params?.message || '';
   return (
-    <ImageBackground source={require('../assets/beach.jpg')} style={styles.container}>
+    <ImageBackground source={require('../assets/beach.png')} style={styles.container}>
       <Text style={styles.text}>{message}</Text>
     </ImageBackground>
   );

@@ -24,7 +24,7 @@ function App() {
   const navigationRef = useRef();
 
   // Function to send token to backend
-  const sendTokenToBackend = async (token) => {
+  const sendTokenToBackend = async token => {
     try {
       const response = await fetch('http://localhost:8000/register', {
         method: 'POST',
@@ -75,10 +75,13 @@ function App() {
       if (theme && message && navigationRef.current) {
         navigationRef.current.navigate(
           theme.charAt(0).toUpperCase() + theme.slice(1),
-          { message }
+          { message },
         );
       }
-      Alert.alert('Foreground Notification', JSON.stringify(remoteMessage.notification));
+      Alert.alert(
+        'Foreground Notification',
+        JSON.stringify(remoteMessage.notification),
+      );
     });
 
     // Background / quit state notification handler
@@ -90,7 +93,7 @@ function App() {
           if (theme && message && navigationRef.current) {
             navigationRef.current.navigate(
               theme.charAt(0).toUpperCase() + theme.slice(1),
-              { message }
+              { message },
             );
           }
         }
@@ -103,6 +106,9 @@ function App() {
 
   return (
     <NavigationContainer linking={linking} ref={navigationRef}>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>App Loaded ✅</Text>
+      </View>
       <Stack.Navigator initialRouteName="NoTheme">
         {Object.entries(themeMap).map(([key, Component]) => (
           <Stack.Screen
@@ -121,4 +127,3 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
-
